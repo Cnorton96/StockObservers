@@ -25,15 +25,16 @@ public class CurrentPriceDisplay implements Observer, Display {
 
     @Override
     public void displayApple(){
+
         System.out.println("Apple Stock Price: " + apple);
     }
 
     @Override
     public void displayMicrosoft(){
+
         System.out.println("Microsoft Stock Price: " + microsoft);
     }
 
-    //update will utilize an api call to grab the updated stock prices.
     @Override
     public void update(float tesla, float apple, float microsoft) {
         this.tesla = tesla;

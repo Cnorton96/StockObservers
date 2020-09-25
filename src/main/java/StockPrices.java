@@ -1,5 +1,11 @@
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
+
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class StockPrices {
 
@@ -7,6 +13,11 @@ public class StockPrices {
     private float tesla;
     private float apple;
     private float microsoft;
+
+    private String teslaSymbol = "TSLA";
+    private String appleSymbol = "AAPL";
+    private String microsoftSymbol = "MSFT";
+
 
 
     public StockPrices(){
@@ -34,23 +45,32 @@ public class StockPrices {
         notifyObservers();
     }
 
-    //going to go back and change this later which will utilize an api to collect the data off the web.
-    public void setPrice(float tesla, float apple, float microsoft){
-        this.tesla = tesla;
-        this.apple = apple;
-        this.microsoft = microsoft;
+    public void setPrice(float tesla, float apple, float microsoft) throws IOException {
+        this.tesla = getTesla();
+        this.apple = getApple();
+        this.microsoft = getMicrosoft();
         priceChange();
     }
 
-    public float getTesla() {
+
+    public float getTesla() throws IOException {
+        Stock stock = YahooFinance.get(teslaSymbol);
+        BigDecimal price = stock.getQuote(true).getPrice();
+        tesla = price.floatValue();
         return tesla;
     }
 
-    public float getApple() {
+    public float getApple() throws IOException {
+        Stock stock = YahooFinance.get(appleSymbol);
+        BigDecimal price = stock.getQuote(true).getPrice();
+        apple = price.floatValue();
         return apple;
     }
 
-    public float getMicrosoft() {
+    public float getMicrosoft() throws IOException {
+        Stock stock = YahooFinance.get(microsoftSymbol);
+        BigDecimal price = stock.getQuote(true).getPrice();
+        microsoft = price.floatValue();
         return microsoft;
     }
 
