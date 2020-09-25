@@ -35,6 +35,7 @@ public class StockPrices {
         }
     }
 
+    //Need to go back and add logic to this to send out different notify messages depending on the change.
     public void notifyObservers(){
         for(Observer observer : observersList){
             observer.update(tesla, apple, microsoft);
