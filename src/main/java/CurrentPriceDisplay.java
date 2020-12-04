@@ -3,6 +3,10 @@ public class CurrentPriceDisplay implements Observer, Display {
     private float tesla;
     private float apple;
     private float microsoft;
+    private float google;
+    private float amazon;
+    private float facebook;
+
     private StockPrices stockPrices;
 
     public CurrentPriceDisplay(StockPrices stockPrices){
@@ -15,6 +19,9 @@ public class CurrentPriceDisplay implements Observer, Display {
         System.out.println("Tesla Stock Price: " + tesla);
         System.out.println("Apple Stock Price: " + apple);
         System.out.println("Microsoft Stock Price: " + microsoft);
+        System.out.println("Google's Stock Price: " + google);
+        System.out.println("Amazon's Stock Price: " + amazon);
+        System.out.println("Facebook's Stock Price: " + facebook);
 
     }
 
@@ -25,21 +32,37 @@ public class CurrentPriceDisplay implements Observer, Display {
 
     @Override
     public void displayApple(){
-
         System.out.println("Apple Stock Price: " + apple);
     }
 
     @Override
     public void displayMicrosoft(){
-
         System.out.println("Microsoft Stock Price: " + microsoft);
     }
 
     @Override
-    public void update(float tesla, float apple, float microsoft) {
+    public void displayGoogle(){
+        System.out.println("Googles stock price: " + google);
+    }
+
+    @Override
+    public void displayAmazon(){
+        System.out.println("Amazon's stock price: " + amazon);
+    }
+
+    @Override
+    public void displayFacebook(){
+        System.out.println("Facebook's stock price: " + facebook);
+    }
+
+    @Override
+    public void update(float tesla, float apple, float microsoft, float google, float amazon, float facebook) {
         this.tesla = tesla;
         this.apple = apple;
         this.microsoft = microsoft;
+        this.google = google;
+        this.amazon = amazon;
+        this.facebook = facebook;
         displayAll();
 
     }

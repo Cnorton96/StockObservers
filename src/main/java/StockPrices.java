@@ -13,10 +13,16 @@ public class StockPrices {
     private float tesla;
     private float apple;
     private float microsoft;
+    private float google;
+    private float amazon;
+    private float facebook;
 
     private String teslaSymbol = "TSLA";
     private String appleSymbol = "AAPL";
     private String microsoftSymbol = "MSFT";
+    private String googleSymbol = "GOOG" ;
+    private String amazonSymbol = "AMZN";
+    private String facebookSymbol = "FB";
 
 
 
@@ -38,7 +44,7 @@ public class StockPrices {
     //Need to go back and add logic to this to send out different notify messages depending on the change.
     public void notifyObservers(){
         for(Observer observer : observersList){
-            observer.update(tesla, apple, microsoft);
+            observer.update(tesla, apple, microsoft, google, amazon, facebook);
         }
     }
 
@@ -46,10 +52,13 @@ public class StockPrices {
         notifyObservers();
     }
 
-    public void setPrice(float tesla, float apple, float microsoft) throws IOException {
+    public void setPrice(float tesla, float apple, float microsoft, float google, float amazon, float facebook) throws IOException {
         this.tesla = getTesla();
         this.apple = getApple();
         this.microsoft = getMicrosoft();
+        this.google = getGoogle();
+        this.amazon = getAmazon();
+        this.facebook = getFacebook();
         priceChange();
     }
 
@@ -73,6 +82,27 @@ public class StockPrices {
         BigDecimal price = stock.getQuote(true).getPrice();
         microsoft = price.floatValue();
         return microsoft;
+    }
+
+    public float getGoogle() throws IOException {
+        Stock stock = YahooFinance.get(googleSymbol);
+        BigDecimal price = stock.getQuote(true).getPrice();
+        google = price.floatValue();
+        return google;
+    }
+
+    public float getAmazon() throws IOException {
+        Stock stock = YahooFinance.get(amazonSymbol);
+        BigDecimal price = stock.getQuote(true).getPrice();
+        amazon = price.floatValue();
+        return amazon;
+    }
+
+    public float getFacebook() throws IOException {
+        Stock stock = YahooFinance.get(facebookSymbol);
+        BigDecimal price = stock.getQuote(true).getPrice();
+        facebook = price.floatValue();
+        return facebook;
     }
 
 

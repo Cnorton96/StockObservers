@@ -8,4 +8,10 @@ public interface Display {
 
     public void displayMicrosoft();
 
+    public void displayGoogle();
+
+    public void displayAmazon();
+
+    public void displayFacebook();
+
 }
